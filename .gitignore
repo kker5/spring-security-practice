@@ -1,0 +1,6 @@
+### idea ###
+.idea/
+
+### Gradle ###
+.gradle
+build/

@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+    // spring boot version 2.5.2
+    id 'org.springframework.boot' version '2.5.2'
+    id "io.spring.dependency-management" version "1.0.11.RELEASE"
+}
+
+group 'me.benny'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // starter web
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    // 이 강의의 주제인 Security 추가
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    // 로그인 화면등을 쉽게 생성하기 위해 thymeleaf 추가
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    // starter test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
