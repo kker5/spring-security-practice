@@ -19,6 +19,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     // 로그인 화면등을 쉽게 생성하기 위해 thymeleaf 추가
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
     // starter test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html
+  lang="ko"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head th:insert="fragments.html::header"></head>
+<body>
+<header th:insert="fragments.html::nav"></header>
+<!-- 개인 user만 접근할 수 있는 페이지 -->
+<div class="container">
+  <h1>개인 페이지</h1>
+  <span sec:authentication="name">익명</span> 님의 개인페이지 입니다.
+  당신의 권한은 <span sec:authentication="principal.authorities"></span>입니다.
+</div>
+</body>
+</html>
