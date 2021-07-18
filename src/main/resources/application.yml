@@ -1,0 +1,9 @@
+logging:
+  level:
+    org.springframework.web: debug
+    sql: error
+spring:
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true

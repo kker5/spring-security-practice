@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html
+  lang="ko"
+  xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <head th:insert="fragments.html::header"></head>
+</head>
+<body>
+<header th:insert="fragments.html::nav"></header>
+<!-- 개인 user만 접근할 수 있는 페이지 -->
+<div class="container">
+  <h1>게시글</h1>
+
+  <!-- Button trigger modal -->
+  <button
+    type="button"
+    class="btn btn-primary"
+    data-bs-toggle="modal"
+    data-bs-target="#newPostModal"
+    data-bs-whatever="@mdo">
+    새 글 쓰기
+  </button>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="newPostModal"
+    tabindex="-1"
+    aria-labelledby="newPostModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newPostModalLabel">새 글 쓰기</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close">
+          </button>
+        </div>
+        <form
+          th:action="@{/post}"
+          method="post"
+        >
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="title" class="col-form-label">제목</label>
+              <input type="text" class="form-control" id="title" name="title">
+            </div>
+            <div class="mb-3">
+              <label for="content" class="col-form-label">내용</label>
+              <textarea class="form-control" id="content" name="content"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">종료</button>
+            <button type="submit" class="btn btn-primary">저장</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <div class="border border-dark" th:each="post : ${posts}">
+        <h2 th:text="${post.title}"></h2>
+        <div>
+          <p th:text="${post.content}"></p>
+          <form th:action="@{/post}" th:method="delete">
+            <input type="hidden" name="id" th:value="${post.id}">
+            <span style="margin: 10px 0px;">Posted by
+              <strong th:if="${post.user}" th:text="${post.user.username}"></strong> on
+              <strong th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd')}"></strong>
+            </span>
+            <button type="submit" class="btn btn-secondary">삭제</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
