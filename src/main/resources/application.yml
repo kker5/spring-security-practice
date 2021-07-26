@@ -7,3 +7,7 @@ spring:
     hiddenmethod:
       filter:
         enabled: true
+server:
+  servlet:
+    session:
+      timeout: 10m # 기본이 30분이고 최소는 1분입니다.
