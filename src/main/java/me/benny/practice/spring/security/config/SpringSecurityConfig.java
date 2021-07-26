@@ -6,7 +6,9 @@ import me.benny.practice.spring.security.user.User;
 import me.benny.practice.spring.security.user.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,7 +21,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserService userService;
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // permit
@@ -29,6 +30,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
             // hello 페이지는 USER 롤을 가진 유저에게만 허용
             .antMatchers("/post").hasRole("USER")
             .antMatchers("/admin").hasRole("ADMIN")
+            .antMatchers(HttpMethod.POST, "/notice").hasRole("ADMIN")
+            .antMatchers(HttpMethod.DELETE, "/notice").hasRole("ADMIN")
             .anyRequest().authenticated();
         // login
         http.formLogin()
