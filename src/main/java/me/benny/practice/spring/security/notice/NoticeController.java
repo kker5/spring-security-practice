@@ -20,20 +20,20 @@ public class NoticeController {
     private final NoticeService noticeService;
 
     @GetMapping
-    public String findByPost(Model model) {
+    public String getNotice(Model model) {
         List<Notice> notices = noticeService.findAll();
         model.addAttribute("notices", notices);
         return "notice/index";
     }
 
     @PostMapping
-    public String savePost(@ModelAttribute PostDto postDto) {
+    public String postNotice(@ModelAttribute PostDto postDto) {
         noticeService.saveNotice(postDto.getTitle(), postDto.getContent());
         return "redirect:notice";
     }
 
     @DeleteMapping
-    public String deletePost(@RequestParam Long id) {
+    public String deleteNotice(@RequestParam Long id) {
         noticeService.deleteNotice(id);
         return "redirect:notice";
     }
