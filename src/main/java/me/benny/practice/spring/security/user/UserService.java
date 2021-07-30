@@ -16,7 +16,7 @@ public class UserService {
         String password
     ) {
         if (userRepository.findByUsername(username) != null) {
-            throw new RuntimeException("이미 등록된 유저입니다.");
+            throw new AlreadyRegisteredUserException();
         }
         return userRepository.save(new User(username, passwordEncoder.encode(password), "ROLE_USER"));
     }
@@ -26,7 +26,7 @@ public class UserService {
         String password
     ) {
         if (userRepository.findByUsername(username) != null) {
-            throw new RuntimeException("이미 등록된 유저입니다.");
+            throw new AlreadyRegisteredUserException();
         }
         return userRepository.save(new User(username, passwordEncoder.encode(password), "ROLE_ADMIN"));
     }

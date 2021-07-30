@@ -9,7 +9,18 @@
 <!-- 관리자만 접근할 수 있는 페이지 -->
 <div class="container">
   <h1>관리자 페이지</h1>
-  <p>당신은 관리자입니다.</p>
-</div>
+  <h3>게시글 내역</h3>
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <div th:each="post : ${posts}">
+        <p style="margin: 10px 0px;">
+          <strong th:text="${post.title}"></strong>
+          Posted by
+          <strong th:if="${post.user}" th:text="${post.user.username}"></strong> on
+          <strong th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd')}"></strong>
+        </p>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
