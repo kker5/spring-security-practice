@@ -3,8 +3,6 @@ package me.benny.practice.spring.security.notice;
 import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
@@ -12,7 +10,6 @@ import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import me.benny.practice.spring.security.post.PostStatus;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -33,9 +30,6 @@ public class Notice {
     @Lob
     private String content;
 
-    @Enumerated(EnumType.STRING)
-    private PostStatus status;
-
     @CreatedDate
     private LocalDateTime createdAt;
     @LastModifiedDate
@@ -47,6 +41,5 @@ public class Notice {
     ) {
         this.title = title;
         this.content = content;
-        this.status = PostStatus.Y;
     }
 }

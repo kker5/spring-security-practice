@@ -3,8 +3,6 @@ package me.benny.practice.spring.security.post;
 import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -36,9 +34,6 @@ public class Post {
     @Lob
     private String content;
 
-    @Enumerated(EnumType.STRING)
-    private PostStatus status;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
     private User user;
@@ -56,7 +51,6 @@ public class Post {
         this.title = title;
         this.content = content;
         this.user = user;
-        this.status = PostStatus.Y;
     }
 
     public void updateContent(
