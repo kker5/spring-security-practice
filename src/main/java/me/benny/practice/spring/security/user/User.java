@@ -40,6 +40,10 @@ public class User implements UserDetails {
         return Collections.singleton((GrantedAuthority) () -> authority);
     }
 
+    public Boolean isAdmin() {
+        return authority.equals("ROLE_ADMIN");
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
