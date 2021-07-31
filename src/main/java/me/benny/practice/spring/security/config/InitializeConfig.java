@@ -1,6 +1,5 @@
 package me.benny.practice.spring.security.config;
 
-import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import me.benny.practice.spring.security.notice.NoticeService;
 import me.benny.practice.spring.security.post.PostService;
@@ -8,9 +7,11 @@ import me.benny.practice.spring.security.user.User;
 import me.benny.practice.spring.security.user.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 @Configuration
 @RequiredArgsConstructor
+@Profile(value = "!test")
 public class InitializeConfig {
 
     private final UserService userService;
@@ -18,7 +19,6 @@ public class InitializeConfig {
     private final NoticeService noticeService;
 
     @Bean
-    @PostConstruct
     public void adminAccount() {
         User user = userService.signup("user", "user");
         userService.signupAdmin("admin", "admin");
