@@ -73,7 +73,7 @@
       <div class="border border-dark" th:each="notice : ${notices}">
         <h2 th:text="${notice.title}"></h2>
         <div>
-          <p th:text="${notice.content}"></p>
+          <p th:text="${notice.content}" style="white-space: pre-wrap;"></p>
           <form th:action="@{/notice}" th:method="delete">
             <input type="hidden" name="id" th:value="${notice.id}">
             <span style="margin: 10px 0px;">Posted At

@@ -72,7 +72,7 @@
       <div class="border border-dark" th:each="post : ${posts}">
         <h2 th:text="${post.title}"></h2>
         <div>
-          <p th:text="${post.content}"></p>
+          <p th:text="${post.content}" style="white-space: pre-wrap;"></p>
           <form th:action="@{/post}" th:method="delete">
             <input type="hidden" name="id" th:value="${post.id}">
             <span style="margin: 10px 0px;">Posted by
