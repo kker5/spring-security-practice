@@ -13,12 +13,13 @@ repositories {
 }
 
 dependencies {
-    // starter web
+    // web mvc 추가
     implementation 'org.springframework.boot:spring-boot-starter-web'
     // 이 강의의 주제인 Security 추가
     implementation 'org.springframework.boot:spring-boot-starter-security'
-    // 로그인 화면등을 쉽게 생성하기 위해 thymeleaf 추가
+    // 웹 페이지를 쉽게 생성하기 위해 thymeleaf 추가
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    // Thymeleaf에서 SpringSecurity를 Integration
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
     // lombok
     compileOnly 'org.projectlombok:lombok:1.18.20'
@@ -29,7 +30,9 @@ dependencies {
     runtimeOnly 'com.h2database:h2'
     // starter test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // security test
     testImplementation 'org.springframework.security:spring-security-test'
+    // junit test
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }
