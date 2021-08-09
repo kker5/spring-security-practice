@@ -29,7 +29,7 @@ public class PostController {
     }
 
     @PostMapping
-    public String savePost(Authentication authentication, @ModelAttribute PostDto postDto) {
+    public String savePost(Authentication authentication, @ModelAttribute PostRegisterDto postDto) {
         User user = (User) authentication.getPrincipal();
         postService.savePost(user, postDto.getTitle(), postDto.getContent());
         return "redirect:post";
