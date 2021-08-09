@@ -11,6 +11,12 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
+    /**
+     * 유저 등록
+     * @param username username
+     * @param password password
+     * @return 유저 권한을 가지고 있는 유저
+     */
     public User signup(
         String username,
         String password
@@ -21,6 +27,12 @@ public class UserService {
         return userRepository.save(new User(username, passwordEncoder.encode(password), "ROLE_USER"));
     }
 
+    /**
+     * 관리자 등록
+     * @param username username
+     * @param password password
+     * @return 관리자 권한을 가지고 있는 유저
+     */
     public User signupAdmin(
         String username,
         String password

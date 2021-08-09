@@ -13,6 +13,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+/**
+ * Security 설정 Config
+ */
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -23,16 +26,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // basic authentication
-//        http.httpBasic(); // basic authentication filter 활성화
         http.httpBasic().disable(); // basic authentication filter 비활성화
-
         // csrf
         http.csrf();
-
         // remember-me
         http.rememberMe();
-
-        // permit
+        // authorization
         http.authorizeRequests()
             // /와 /home은 모두에게 허용
             .antMatchers("/", "/css/**", "/home", "/example", "/signup").permitAll()
@@ -53,6 +52,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
             .logoutSuccessUrl("/");
     }
 
+    /**
+     * UserDetailsService 구현
+     * @return UserDetailsService
+     */
     @Bean
     @Override
     public UserDetailsService userDetailsService() {

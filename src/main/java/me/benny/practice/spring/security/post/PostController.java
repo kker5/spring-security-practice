@@ -20,6 +20,10 @@ public class PostController {
 
     private final PostService postService;
 
+    /**
+     * 게시글 조회
+     * @return 게시글 view (post/index.html)
+     */
     @GetMapping
     public String getPost(Authentication authentication, Model model) {
         User user = (User) authentication.getPrincipal();
@@ -28,6 +32,9 @@ public class PostController {
         return "post/index";
     }
 
+    /**
+     * 게시글 저장
+     */
     @PostMapping
     public String savePost(Authentication authentication, @ModelAttribute PostRegisterDto postDto) {
         User user = (User) authentication.getPrincipal();
@@ -35,6 +42,9 @@ public class PostController {
         return "redirect:post";
     }
 
+    /**
+     * 게시글 삭제
+     */
     @DeleteMapping
     public String deletePost(Authentication authentication, @RequestParam Long id) {
         User user = (User) authentication.getPrincipal();

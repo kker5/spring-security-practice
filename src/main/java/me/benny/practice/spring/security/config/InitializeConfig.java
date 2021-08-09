@@ -9,6 +9,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+/**
+ * 초기 상태 등록 Config
+ */
 @Configuration
 @RequiredArgsConstructor
 @Profile(value = "!test")
@@ -18,6 +21,12 @@ public class InitializeConfig {
     private final PostService postService;
     private final NoticeService noticeService;
 
+    /**
+     * <h2>유저 등록</h2>
+     * 1. user / user<br/> 2. admin / admin
+     * <h2>게시글 등록 4개</h2>
+     * <h2>공지사항 등록 2개</h2>
+     */
     @Bean
     public void adminAccount() {
         User user = userService.signup("user", "user");

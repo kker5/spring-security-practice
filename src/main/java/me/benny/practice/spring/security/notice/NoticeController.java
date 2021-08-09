@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * 공지사항 서비스 Controller
+ */
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/notice")
@@ -19,6 +22,10 @@ public class NoticeController {
 
     private final NoticeService noticeService;
 
+    /**
+     * 공지사항 조회
+     * @return notice/index.html
+     */
     @GetMapping
     public String getNotice(Model model) {
         List<Notice> notices = noticeService.findAll();
@@ -26,12 +33,22 @@ public class NoticeController {
         return "notice/index";
     }
 
+    /**
+     * 공지사항 등록
+     * @param postDto 게시글 등록 Dto
+     * @return notice/index.html refresh
+     */
     @PostMapping
     public String postNotice(@ModelAttribute PostRegisterDto postDto) {
         noticeService.saveNotice(postDto.getTitle(), postDto.getContent());
         return "redirect:notice";
     }
 
+    /**
+     * 공지사항 삭제
+     * @param id 공지사항 ID
+     * @return notice/index.html refresh
+     */
     @DeleteMapping
     public String deleteNotice(@RequestParam Long id) {
         noticeService.deleteNotice(id);

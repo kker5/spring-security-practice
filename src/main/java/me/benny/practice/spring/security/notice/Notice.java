@@ -25,13 +25,26 @@ public class Notice {
     @GeneratedValue
     private Long id;
 
+    /**
+     * 공지사항 제목
+     */
     private String title;
 
+    /**
+     * 공지사항 내용
+     */
     @Lob
     private String content;
 
+    /**
+     * 등록일시
+     */
     @CreatedDate
     private LocalDateTime createdAt;
+
+    /**
+     * 수정일시
+     */
     @LastModifiedDate
     private LocalDateTime updatedAt;
 

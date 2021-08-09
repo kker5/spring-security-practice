@@ -29,11 +29,20 @@ public class Post {
     @GeneratedValue
     private Long id;
 
+    /**
+     * 제목
+     */
     private String title;
 
+    /**
+     * 내용
+     */
     @Lob
     private String content;
 
+    /**
+     * User 참조
+     */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
     private User user;

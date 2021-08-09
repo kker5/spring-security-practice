@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * 회원가입 Controller
+ */
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/signup")
@@ -14,14 +17,17 @@ public class SignUpController {
 
     private final UserService userService;
 
+    /**
+     * @return 회원가입 페이지 리소스
+     */
     @GetMapping
-    public String signupView() {
+    public String signup() {
         return "signup";
     }
 
     @PostMapping
     public String signup(
-        @ModelAttribute UserDto userDto
+        @ModelAttribute UserRegisterDto userDto
     ) {
         userService.signup(userDto.getUsername(), userDto.getPassword());
         return "redirect:login";
