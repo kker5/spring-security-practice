@@ -1,7 +1,7 @@
 logging:
   level:
-    org.springframework.web: debug
-    sql: error
+    root: INFO
+    sql: ERROR
 spring:
   mvc:
     hiddenmethod:
