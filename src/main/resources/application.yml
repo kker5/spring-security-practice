@@ -1,12 +1,15 @@
+# logging 레벨 설정
 logging:
   level:
     root: INFO
     sql: ERROR
+# Overloaded POST 사용
 spring:
   mvc:
     hiddenmethod:
       filter:
         enabled: true
+# session
 server:
   servlet:
     session:
