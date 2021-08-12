@@ -34,7 +34,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         // authorization
         http.authorizeRequests()
             // /와 /home은 모두에게 허용
-            .antMatchers("/", "/css/**", "/home", "/example", "/signup").permitAll()
+            .antMatchers("/", "/css/**", "/home", "/signup").permitAll()
             // hello 페이지는 USER 롤을 가진 유저에게만 허용
             .antMatchers("/note").hasRole("USER")
             .antMatchers("/admin").hasRole("ADMIN")
@@ -54,6 +54,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      * UserDetailsService 구현
+     *
      * @return UserDetailsService
      */
     @Bean
