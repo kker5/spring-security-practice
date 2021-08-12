@@ -2,7 +2,7 @@ package me.benny.practice.spring.security.notice;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import me.benny.practice.spring.security.post.PostRegisterDto;
+import me.benny.practice.spring.security.note.NoteRegisterDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -35,12 +35,12 @@ public class NoticeController {
 
     /**
      * 공지사항 등록
-     * @param postDto 게시글 등록 Dto
+     * @param noteDto 노트 등록 Dto
      * @return notice/index.html refresh
      */
     @PostMapping
-    public String postNotice(@ModelAttribute PostRegisterDto postDto) {
-        noticeService.saveNotice(postDto.getTitle(), postDto.getContent());
+    public String postNotice(@ModelAttribute NoteRegisterDto noteDto) {
+        noticeService.saveNotice(noteDto.getTitle(), noteDto.getContent());
         return "redirect:notice";
     }
 

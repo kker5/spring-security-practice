@@ -1,4 +1,4 @@
-package me.benny.practice.spring.security.post;
+package me.benny.practice.spring.security.note;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -15,41 +15,41 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/post")
-public class PostController {
+@RequestMapping("/note")
+public class NoteController {
 
-    private final PostService postService;
+    private final NoteService noteService;
 
     /**
-     * 게시글 조회
-     * @return 게시글 view (post/index.html)
+     * 노트(게시글) 조회
+     * @return 노트 view (note/index.html)
      */
     @GetMapping
-    public String getPost(Authentication authentication, Model model) {
+    public String getNote(Authentication authentication, Model model) {
         User user = (User) authentication.getPrincipal();
-        List<Post> posts = postService.findByUser(user);
-        model.addAttribute("posts", posts);
-        return "post/index";
+        List<Note> notes = noteService.findByUser(user);
+        model.addAttribute("notes", notes);
+        return "note/index";
     }
 
     /**
-     * 게시글 저장
+     * 노트 저장
      */
     @PostMapping
-    public String savePost(Authentication authentication, @ModelAttribute PostRegisterDto postDto) {
+    public String saveNote(Authentication authentication, @ModelAttribute NoteRegisterDto noteDto) {
         User user = (User) authentication.getPrincipal();
-        postService.savePost(user, postDto.getTitle(), postDto.getContent());
-        return "redirect:post";
+        noteService.saveNote(user, noteDto.getTitle(), noteDto.getContent());
+        return "redirect:note";
     }
 
     /**
-     * 게시글 삭제
+     * 노트 삭제
      */
     @DeleteMapping
-    public String deletePost(Authentication authentication, @RequestParam Long id) {
+    public String deleteNote(Authentication authentication, @RequestParam Long id) {
         User user = (User) authentication.getPrincipal();
-        postService.deletePost(user, id);
-        return "redirect:post";
+        noteService.deleteNote(user, id);
+        return "redirect:note";
     }
 }
 

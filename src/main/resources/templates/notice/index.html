@@ -76,7 +76,7 @@
           <p th:text="${notice.content}" style="white-space: pre-wrap;"></p>
           <form th:action="@{/notice}" th:method="delete">
             <input type="hidden" name="id" th:value="${notice.id}">
-            <span style="margin: 10px 0px;">Posted At
+            <span style="margin: 10px 0px;">Posted On
               <strong th:text="${#temporals.format(notice.createdAt, 'yyyy-MM-dd')}"></strong>
             </span>
             <button

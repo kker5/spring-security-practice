@@ -1,14 +1,14 @@
-package me.benny.practice.spring.security.post;
+package me.benny.practice.spring.security.note;
 
 import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 게시글 등록 Dto
+ * 노트 등록 Dto
  */
 @Getter
 @Setter
-public class PostRegisterDto {
+public class NoteRegisterDto {
 
     private String title;
     private String content;

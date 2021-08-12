@@ -1,4 +1,4 @@
-package me.benny.practice.spring.security.post;
+package me.benny.practice.spring.security.note;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -14,17 +14,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class AdminCotroller {
 
-    private final PostService postService;
+    private final NoteService noteService;
 
     /**
-     * 어드민인 경우 게시글 조회
+     * 어드민인 경우 노트 조회
      * @return admin/index.html
      */
     @GetMapping
-    public String getPostForAdmin(Authentication authentication, Model model) {
+    public String getNoteForAdmin(Authentication authentication, Model model) {
         User user = (User) authentication.getPrincipal();
-        List<Post> posts = postService.findByUser(user);
-        model.addAttribute("posts", posts);
+        List<Note> notes = noteService.findByUser(user);
+        model.addAttribute("notes", notes);
         return "admin/index";
     }
 }
