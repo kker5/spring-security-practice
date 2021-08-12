@@ -1,7 +1,9 @@
-package me.benny.practice.spring.security.note;
+package me.benny.practice.spring.security.admin;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import me.benny.practice.spring.security.note.Note;
+import me.benny.practice.spring.security.note.NoteService;
 import me.benny.practice.spring.security.user.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
