@@ -59,7 +59,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) {
         // 정적 리소스 spring security 대상에서 제외
-//        web.ignoring().mvcMatchers("/images/**", "/css/**"); // 아래 코드와 같은 코드입니다.
+//        web.ignoring().antMatchers("/images/**", "/css/**"); // 아래 코드와 같은 코드입니다.
         web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
 
