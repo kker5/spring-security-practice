@@ -35,6 +35,7 @@
             <a class="nav-link active" th:href="@{/}">홈</a>
           </li>
           <li class="nav-item">
+            <!-- 관리자만 -->
             <a
               class="nav-link active"
               sec:authorize="hasAnyRole('ROLE_ADMIN')"
@@ -44,6 +45,7 @@
             </a>
           </li>
           <li class="nav-item">
+            <!-- 로그인한 사람 모두 -->
             <a
               class="nav-link active"
               sec:authorize="isAuthenticated()"
@@ -53,6 +55,7 @@
             </a>
           </li>
           <li class="nav-item">
+            <!-- 유저만 -->
             <a
               class="nav-link active"
               sec:authorize="hasAnyRole('ROLE_USER')"
@@ -62,6 +65,7 @@
             </a>
           </li>
           <li class="nav-item">
+            <!-- 로그인 안한 사람만 -->
             <a
               class="nav-link active"
               sec:authorize="!isAuthenticated()"
@@ -71,6 +75,7 @@
             </a>
           </li>
           <li class="nav-item">
+            <!-- 로그인 안한 사람만 -->
             <a
               class="nav-link active"
               sec:authorize="!isAuthenticated()"
@@ -80,6 +85,7 @@
             </a>
           </li>
           <li class="nav-item">
+            <!-- 로그인한 사람만 -->
             <a
               class="nav-link active"
               sec:authorize="isAuthenticated()"

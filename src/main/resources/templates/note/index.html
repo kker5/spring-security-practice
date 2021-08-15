@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html
-  lang="ko"
-  xmlns:th="http://www.thymeleaf.org"
+        lang="ko"
+        xmlns:th="http://www.thymeleaf.org"
 >
 <head>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
   <head th:insert="fragments.html::header"></head>
 </head>
 <body>
@@ -15,38 +15,38 @@
 <div class="container">
   <h1>개인노트</h1>
 
-  <!-- Button trigger modal -->
+  <!-- 노트 작성 Modal Button -->
   <button
-    type="button"
-    class="btn btn-primary"
-    data-bs-toggle="modal"
-    data-bs-target="#newNoteModal"
-    data-bs-whatever="@mdo">
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#newNoteModal"
+          data-bs-whatever="@mdo">
     새 글 쓰기
   </button>
 
-  <!-- Modal -->
+  <!-- 노트 작성 Modal -->
   <div
-    class="modal fade"
-    id="newNoteModal"
-    tabindex="-1"
-    aria-labelledby="newNoteModalLabel"
-    aria-hidden="true"
+          class="modal fade"
+          id="newNoteModal"
+          tabindex="-1"
+          aria-labelledby="newNoteModalLabel"
+          aria-hidden="true"
   >
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="newNoteModalLabel">새 글 쓰기</h5>
           <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close">
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close">
           </button>
         </div>
         <form
-          th:action="@{/note}"
-          method="post"
+                th:action="@{/note}"
+                method="post"
         >
           <div class="modal-body">
             <div class="mb-3">
@@ -67,15 +67,19 @@
     </div>
   </div>
 
+  <!-- 노트 내용 조회 -->
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <!-- 노트 개수만큼 반복 -->
       <div class="border border-dark" th:each="note : ${notes}">
         <h2 th:text="${note.title}"></h2>
         <div>
           <p th:text="${note.content}" style="white-space: pre-wrap;"></p>
           <form th:action="@{/note}" th:method="delete">
             <input type="hidden" name="id" th:value="${note.id}">
+            <!-- 노트 삭제 버튼 -->
             <button type="submit" class="btn btn-secondary">삭제</button>
+            <!-- 작성일자 표시 -->
             <span style="margin: 10px 0px;">Posted On
               <strong th:text="${#temporals.format(note.createdAt, 'yyyy-MM-dd')}"></strong>
             </span>
