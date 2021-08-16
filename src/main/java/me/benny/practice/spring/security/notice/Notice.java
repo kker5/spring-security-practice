@@ -1,18 +1,14 @@
 package me.benny.practice.spring.security.notice;
 
-import java.time.LocalDateTime;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table
@@ -49,8 +45,8 @@ public class Notice {
     private LocalDateTime updatedAt;
 
     public Notice(
-        String title,
-        String content
+            String title,
+            String content
     ) {
         this.title = title;
         this.content = content;

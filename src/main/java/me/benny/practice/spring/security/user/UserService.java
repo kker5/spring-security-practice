@@ -13,13 +13,14 @@ public class UserService {
 
     /**
      * 유저 등록
+     *
      * @param username username
      * @param password password
      * @return 유저 권한을 가지고 있는 유저
      */
     public User signup(
-        String username,
-        String password
+            String username,
+            String password
     ) {
         if (userRepository.findByUsername(username) != null) {
             throw new AlreadyRegisteredUserException();
@@ -29,13 +30,14 @@ public class UserService {
 
     /**
      * 관리자 등록
+     *
      * @param username username
      * @param password password
      * @return 관리자 권한을 가지고 있는 유저
      */
     public User signupAdmin(
-        String username,
-        String password
+            String username,
+            String password
     ) {
         if (userRepository.findByUsername(username) != null) {
             throw new AlreadyRegisteredUserException();

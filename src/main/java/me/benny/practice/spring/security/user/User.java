@@ -1,16 +1,17 @@
 package me.benny.practice.spring.security.user;
 
-import java.util.Collection;
-import java.util.Collections;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.util.Collection;
+import java.util.Collections;
 
 @Entity
 @Table
@@ -26,9 +27,9 @@ public class User implements UserDetails {
     private String authority;
 
     public User(
-        String username,
-        String password,
-        String authority
+            String username,
+            String password,
+            String authority
     ) {
         this.username = username;
         this.password = password;

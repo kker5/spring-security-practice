@@ -1,15 +1,5 @@
 package me.benny.practice.spring.security.note;
 
-import java.time.LocalDateTime;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +7,9 @@ import me.benny.practice.spring.security.user.User;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table
@@ -53,9 +46,9 @@ public class Note {
     private LocalDateTime updatedAt;
 
     public Note(
-        String title,
-        String content,
-        User user
+            String title,
+            String content,
+            User user
     ) {
         this.title = title;
         this.content = content;
@@ -63,8 +56,8 @@ public class Note {
     }
 
     public void updateContent(
-        String title,
-        String content
+            String title,
+            String content
     ) {
         this.title = title;
         this.content = content;

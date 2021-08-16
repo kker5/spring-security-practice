@@ -27,7 +27,7 @@ public class SignUpController {
 
     @PostMapping
     public String signup(
-        @ModelAttribute UserRegisterDto userDto
+            @ModelAttribute UserRegisterDto userDto
     ) {
         userService.signup(userDto.getUsername(), userDto.getPassword());
         return "redirect:login";

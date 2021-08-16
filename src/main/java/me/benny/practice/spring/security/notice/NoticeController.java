@@ -1,16 +1,12 @@
 package me.benny.practice.spring.security.notice;
 
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import me.benny.practice.spring.security.note.NoteRegisterDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 공지사항 서비스 Controller
@@ -24,6 +20,7 @@ public class NoticeController {
 
     /**
      * 공지사항 조회
+     *
      * @return notice/index.html
      */
     @GetMapping
@@ -35,6 +32,7 @@ public class NoticeController {
 
     /**
      * 공지사항 등록
+     *
      * @param noteDto 노트 등록 Dto
      * @return notice/index.html refresh
      */
@@ -46,6 +44,7 @@ public class NoticeController {
 
     /**
      * 공지사항 삭제
+     *
      * @param id 공지사항 ID
      * @return notice/index.html refresh
      */

@@ -1,11 +1,12 @@
 package me.benny.practice.spring.security.notice;
 
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -16,6 +17,7 @@ public class NoticeService {
 
     /**
      * 모든 공지사항 조회
+     *
      * @return 모든 공지사항 List
      */
     @Transactional(readOnly = true)
@@ -25,7 +27,8 @@ public class NoticeService {
 
     /**
      * 공지사항 저장
-     * @param title 제목
+     *
+     * @param title   제목
      * @param content 내용
      * @return 저장된 공지사항
      */
@@ -35,6 +38,7 @@ public class NoticeService {
 
     /**
      * 공지사항 삭제
+     *
      * @param id ID
      */
     public void deleteNotice(Long id) {

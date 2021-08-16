@@ -1,6 +1,5 @@
 package me.benny.practice.spring.security.admin;
 
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import me.benny.practice.spring.security.note.Note;
 import me.benny.practice.spring.security.note.NoteService;
@@ -11,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/admin")
@@ -20,6 +21,7 @@ public class AdminCotroller {
 
     /**
      * 어드민인 경우 노트 조회
+     *
      * @return admin/index.html
      */
     @GetMapping
