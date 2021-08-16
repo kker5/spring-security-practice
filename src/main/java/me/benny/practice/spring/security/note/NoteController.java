@@ -28,6 +28,7 @@ public class NoteController {
     public String getNote(Authentication authentication, Model model) {
         User user = (User) authentication.getPrincipal();
         List<Note> notes = noteService.findByUser(user);
+        // note/index.html 에서 notes 사용가능
         model.addAttribute("notes", notes);
         return "note/index";
     }
