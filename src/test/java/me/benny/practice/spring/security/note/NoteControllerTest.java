@@ -18,8 +18,7 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @ActiveProfiles(profiles = "test")
@@ -47,6 +46,7 @@ class NoteControllerTest {
     @Test
     void getNote_인증없음() throws Exception {
         mockMvc.perform(get("/note"))
+                .andExpect(redirectedUrlPattern("**/login"))
                 .andExpect(status().is3xxRedirection());
     }
 
@@ -60,11 +60,12 @@ class NoteControllerTest {
     @Test
     void postNote_인증없음() throws Exception {
         mockMvc.perform(
-                post("/note").with(csrf())
-                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                        .param("title", "제목")
-                        .param("content", "내용")
-        ).andExpect(status().is3xxRedirection());
+                        post("/note").with(csrf())
+                                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                                .param("title", "제목")
+                                .param("content", "내용")
+                ).andExpect(redirectedUrlPattern("**/login"))
+                .andExpect(status().is3xxRedirection());
     }
 
     @Test
@@ -74,7 +75,7 @@ class NoteControllerTest {
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("title", "제목")
                         .param("content", "내용")
-        ).andExpect(status().is4xxClientError());
+        ).andExpect(status().isForbidden()); // 접근 거부
     }
 
     @Test
@@ -91,8 +92,9 @@ class NoteControllerTest {
     void deleteNote_인증없음() throws Exception {
         Note note = noteRepository.save(new Note("제목", "내용", user));
         mockMvc.perform(
-                delete("/note?id=" + note.getId()).with(csrf())
-        ).andExpect(status().is3xxRedirection());
+                        delete("/note?id=" + note.getId()).with(csrf())
+                ).andExpect(redirectedUrlPattern("**/login"))
+                .andExpect(status().is3xxRedirection());
     }
 
     @Test
@@ -108,6 +110,6 @@ class NoteControllerTest {
         Note note = noteRepository.save(new Note("제목", "내용", user));
         mockMvc.perform(
                 delete("/note?id=" + note.getId()).with(csrf()).with(user(admin))
-        ).andExpect(status().is4xxClientError());
+        ).andExpect(status().isForbidden()); // 접근 거부
     }
 }
