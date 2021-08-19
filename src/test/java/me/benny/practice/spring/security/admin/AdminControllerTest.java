@@ -35,7 +35,7 @@ class AdminControllerTest {
     @BeforeEach
     public void setUp(@Autowired WebApplicationContext applicationContext) {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(applicationContext)
-                .apply(springSecurity())
+                .apply(springSecurity()) // spring security 적용
                 .alwaysDo(print())
                 .build();
         // ROLE_USER 권한이 있는 유저 생성
