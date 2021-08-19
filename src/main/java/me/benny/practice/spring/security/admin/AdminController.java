@@ -15,7 +15,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/admin")
-public class AdminCotroller {
+public class AdminController {
 
     private final NoteService noteService;
 

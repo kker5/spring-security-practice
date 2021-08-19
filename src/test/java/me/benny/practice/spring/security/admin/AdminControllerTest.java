@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @ActiveProfiles(profiles = "test")
 @Transactional
-class AdminCotrollerTest {
+class AdminControllerTest {
 
     @Autowired
     private UserRepository userRepository;
