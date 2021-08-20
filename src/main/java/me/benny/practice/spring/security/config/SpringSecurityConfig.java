@@ -1,7 +1,11 @@
 package me.benny.practice.spring.security.config;
 
 import lombok.RequiredArgsConstructor;
+import me.benny.practice.spring.security.jwt.JwtAuthenticationFilter;
+import me.benny.practice.spring.security.jwt.JwtAuthorizationFilter;
+import me.benny.practice.spring.security.jwt.JwtProperties;
 import me.benny.practice.spring.security.user.User;
+import me.benny.practice.spring.security.user.UserRepository;
 import me.benny.practice.spring.security.user.UserService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -11,8 +15,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
@@ -24,15 +31,28 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserService userService;
+    private final UserRepository userRepository;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // basic authentication
         http.httpBasic().disable(); // basic authentication filter 비활성화
         // csrf
-        http.csrf();
+        http.csrf().disable();
         // remember-me
         http.rememberMe();
+
+        // stateless
+        http.sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        // jwt filter
+        http.addFilterBefore(
+                new JwtAuthenticationFilter(authenticationManager()),
+                UsernamePasswordAuthenticationFilter.class
+        ).addFilterBefore(
+                new JwtAuthorizationFilter(userRepository),
+                BasicAuthenticationFilter.class
+        );
         // authorization
         http.authorizeRequests()
                 // /와 /home은 모두에게 허용
@@ -51,7 +71,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         // logout
         http.logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/");
+                .logoutSuccessUrl("/")
+                .invalidateHttpSession(true)
+                .deleteCookies(JwtProperties.COOKIE_NAME);
     }
 
     @Override
