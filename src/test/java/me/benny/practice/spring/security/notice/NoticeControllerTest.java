@@ -50,11 +50,11 @@ class NoticeControllerTest {
     @Test
     void postNotice_인증없음() throws Exception {
         mockMvc.perform(
-                post("/notice")
-                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                        .param("title", "제목")
-                        .param("content", "내용")
-        ).andExpect(status().is3xxRedirection())
+                        post("/notice")
+                                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                                .param("title", "제목")
+                                .param("content", "내용")
+                ).andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrlPattern("**/login"));
     }
 
@@ -84,8 +84,8 @@ class NoticeControllerTest {
     void deleteNotice_인증없음() throws Exception {
         Notice notice = noticeRepository.save(new Notice("제목", "내용"));
         mockMvc.perform(
-                delete("/notice?id=" + notice.getId())
-        ).andExpect(status().is3xxRedirection())
+                        delete("/notice?id=" + notice.getId())
+                ).andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrlPattern("**/login"));
     }
 
