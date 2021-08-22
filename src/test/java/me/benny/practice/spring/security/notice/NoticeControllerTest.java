@@ -54,7 +54,8 @@ class NoticeControllerTest {
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("title", "제목")
                         .param("content", "내용")
-        ).andExpect(status().isForbidden()); // 접근 거부
+        ).andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrlPattern("**/login"));
     }
 
     @Test
@@ -84,7 +85,8 @@ class NoticeControllerTest {
         Notice notice = noticeRepository.save(new Notice("제목", "내용"));
         mockMvc.perform(
                 delete("/notice?id=" + notice.getId())
-        ).andExpect(status().isForbidden()); // 접근 거부
+        ).andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrlPattern("**/login"));
     }
 
     @Test
