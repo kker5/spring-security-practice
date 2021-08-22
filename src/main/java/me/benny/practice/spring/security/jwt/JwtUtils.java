@@ -28,12 +28,14 @@ public class JwtUtils {
 
     /**
      * user로 토큰 생성
-     *
+     * HEADER : alg, kid
+     * PAYLOAD : sub, iat, exp
+     * SIGNATURE : JwtKey.getRandomKey로 구한 Secret Key로 HS512 해시
      * @param user 유저
      * @return jwt token
      */
     public static String createToken(User user) {
-        Claims claims = Jwts.claims().setSubject(user.getUsername());
+        Claims claims = Jwts.claims().setSubject(user.getUsername()); // subject
         Date now = new Date(); // 현재 시간
         Pair<String, String> key = JwtKey.getRandomKey();
         // JWT Token 생성
