@@ -1,7 +1,5 @@
 package me.benny.practice.spring.security.jwt;
 
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.security.Keys;
 import me.benny.practice.spring.security.user.User;
 import me.benny.practice.spring.security.user.UserRepository;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,7 +13,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 /**
@@ -64,12 +61,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
      * User가 없다면 null
      */
     private Authentication getUsernamePasswordAuthenticationToken(String token) {
-        String userName = Jwts.parserBuilder() // parser용 builder
-                .setSigningKey(Keys.hmacShaKeyFor(JwtProperties.SECRET_KEY.getBytes(StandardCharsets.UTF_8)))
-                .build()
-                .parseClaimsJws(token)
-                .getBody()
-                .getSubject();
+        String userName = JwtUtils.getUsername(token);
         if (userName != null) {
             User user = userRepository.findByUsername(userName); // 유저를 유저명으로 찾습니다.
             return new UsernamePasswordAuthenticationToken(
