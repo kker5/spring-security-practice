@@ -2,6 +2,7 @@ package me.benny.practice.spring.security.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwsHeader;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SigningKeyResolverAdapter;
 
 import java.security.Key;
