@@ -40,8 +40,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         // csrf
         http.csrf().disable();
         // remember-me
-        http.rememberMe();
-
+        http.rememberMe().disable();
         // stateless
         http.sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
