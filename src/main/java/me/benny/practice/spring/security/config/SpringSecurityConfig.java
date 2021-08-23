@@ -1,6 +1,8 @@
 package me.benny.practice.spring.security.config;
 
 import lombok.RequiredArgsConstructor;
+import me.benny.practice.spring.security.filter.StopwatchFilter;
+import me.benny.practice.spring.security.filter.TesterAuthenticationFilter;
 import me.benny.practice.spring.security.user.User;
 import me.benny.practice.spring.security.user.UserService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -13,6 +15,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
@@ -27,6 +31,16 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // stopwath filter
+        http.addFilterBefore(
+                new StopwatchFilter(),
+                WebAsyncManagerIntegrationFilter.class
+        );
+        // tester authentication filter
+        http.addFilterBefore(
+                new TesterAuthenticationFilter(this.authenticationManager()),
+                UsernamePasswordAuthenticationFilter.class
+        );
         // basic authentication
         http.httpBasic().disable(); // basic authentication filter 비활성화
         // csrf
