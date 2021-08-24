@@ -27,6 +27,7 @@ public class NoteController {
         List<Note> notes = noteService.findByUser(user);
         // note/index.html 에서 notes 사용가능
         model.addAttribute("notes", notes);
+        // note/index.html 제공
         return "note/index";
     }
 

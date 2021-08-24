@@ -30,6 +30,7 @@ public class SignUpController {
             @ModelAttribute UserRegisterDto userDto
     ) {
         userService.signup(userDto.getUsername(), userDto.getPassword());
+        // 회원가입 후 로그인 페이지로 이동
         return "redirect:login";
     }
 }
