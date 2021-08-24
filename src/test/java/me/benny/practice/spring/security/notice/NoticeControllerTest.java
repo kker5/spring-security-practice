@@ -44,7 +44,8 @@ class NoticeControllerTest {
     @WithMockUser
     void getNotice_인증있음() throws Exception {
         mockMvc.perform(get("/notice"))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(view().name("notice/index"));
     }
 
     @Test

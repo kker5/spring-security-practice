@@ -61,8 +61,10 @@ class NoteControllerTest {
     )
     void getNote_인증있음() throws Exception {
         mockMvc.perform(
-                get("/note")
-        ).andExpect(status().isOk());
+                        get("/note")
+                ).andExpect(status().isOk())
+                .andExpect(view().name("note/index"))
+                .andDo(print());
     }
 
     @Test
