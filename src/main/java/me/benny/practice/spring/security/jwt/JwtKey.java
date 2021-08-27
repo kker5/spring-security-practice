@@ -28,9 +28,10 @@ public class JwtKey {
      *
      * @return kid와 key Pair
      */
-    public static Pair<String, String> getRandomKey() {
+    public static Pair<String, Key> getRandomKey() {
         String kid = KID_SET[randomIndex.nextInt(KID_SET.length)];
-        return Pair.of(kid, SECRET_KEY_SET.get(kid));
+        String secretKey = SECRET_KEY_SET.get(kid);
+        return Pair.of(kid, Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8)));
     }
 
     /**
