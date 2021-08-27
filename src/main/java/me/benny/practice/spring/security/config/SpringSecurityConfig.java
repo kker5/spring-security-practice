@@ -7,7 +7,6 @@ import me.benny.practice.spring.security.user.User;
 import me.benny.practice.spring.security.user.UserService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -22,7 +21,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 /**
  * Security 설정 Config
  */
-@Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
